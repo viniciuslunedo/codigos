@@ -17,9 +17,13 @@ void insere_cliente() {
 }
 
 void listar_clientes() {
-
+  if (qtd_clientes == 0) {
+        printf("nenhum cliente cadastrado\n");
+        return;
+    }
     for (int i = 0; i < qtd_clientes; i++) {
-        printf("%s\n", clientes[i]);
+        printf("%d - %s\n", i, clientes[i]);
+        
     }
 }
 
@@ -43,14 +47,26 @@ void atualiza_cliente() {
     printf("digite o numero do cliente para atualizar (0 a %d)\n", qtd_clientes - 1);
     scanf("%d", &indice);
 
-    if (indice < 0 || indice >= qtd_clientes) {
-        printf("indice invalido\n");
-        return;
-    }
+
 
     printf("digite o novo nome para o cliente\n");
     scanf("%s", clientes[indice]);
-    printf("cliente atualizado com sucesso\n");
+    printf("cliente atualizado\n");
+}
+
+
+void deleta_cliente() {
+    int indice;
+    listar_clientes();
+    printf("digite o numero do cliente que deseja deletar (0 a %d)\n", qtd_clientes - 1);
+    scanf("%d", &indice);
+
+    for (int i = indice; i < qtd_clientes - 1; i++) {
+        strcpy(clientes[i], clientes[i + 1]);
+    }
+
+    qtd_clientes--;
+    printf("cliente deletado\n");
 }
 
 
@@ -68,6 +84,8 @@ int main() {
         printf("3 - inserir venda\n");
         printf("4 - listar clientes\n");
         printf("5 - atualizar cliente\n");
+        printf("6 - deletar cliente\n");
+
 
         scanf("%d", &opcao);
 
@@ -87,6 +105,9 @@ int main() {
                 case 5:
     atualiza_cliente();
     break;
+            case 6: 
+            deleta_cliente();
+            break;
 
             case 0:
                 printf("encerrando o programa\n");
