@@ -37,6 +37,21 @@ void insere_venda() {
 }
 
 
+void atualiza_cliente() {
+    int indice;
+    listar_clientes();
+    printf("digite o numero do cliente para atualizar (0 a %d)\n", qtd_clientes - 1);
+    scanf("%d", &indice);
+
+    if (indice < 0 || indice >= qtd_clientes) {
+        printf("indice invalido\n");
+        return;
+    }
+
+    printf("digite o novo nome para o cliente\n");
+    scanf("%s", clientes[indice]);
+    printf("cliente atualizado com sucesso\n");
+}
 
 
 
@@ -52,6 +67,8 @@ int main() {
         printf("2 - inserir produto\n");
         printf("3 - inserir venda\n");
         printf("4 - listar clientes\n");
+        printf("5 - atualizar cliente\n");
+
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -67,6 +84,10 @@ int main() {
             case 4:
                 listar_clientes();
                 break;
+                case 5:
+    atualiza_cliente();
+    break;
+
             case 0:
                 printf("encerrando o programa\n");
                 break;
@@ -86,4 +107,3 @@ int main() {
 
     return 0;
 }
-
