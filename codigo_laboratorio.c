@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+
+// teste
 #define QTD_CLIENTE 10
 #define QTD_PRODUTO 10
 
